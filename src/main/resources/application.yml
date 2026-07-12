@@ -7,14 +7,20 @@ spring:
     url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/nursery}
     username: ${SPRING_DATASOURCE_USERNAME:nursery}
     password: ${SPRING_DATASOURCE_PASSWORD:nursery}
+  flyway:
+    enabled: true
   jpa:
     hibernate:
-      # No entities yet (step 1). Flyway will own the schema from step 2 on.
-      ddl-auto: none
+      # Flyway owns the schema. Hibernate only validates that the entities match
+      # the Flyway-created tables at startup (never mutates the schema).
+      ddl-auto: validate
     open-in-view: false
     properties:
       hibernate:
         format_sql: false
+        # Pin Instant -> SQL TIMESTAMP (no zone) so it matches the migration DDL.
+        type:
+          preferred_instant_jdbc_type: TIMESTAMP
 
 server:
   port: 8080

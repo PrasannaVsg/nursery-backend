@@ -51,4 +51,4 @@ Do not jump ahead. After each step: `docker compose up`, test in Postman, `git c
 
 ## Current step
 > Update this line as you go, e.g. "Working on: Build step 2 — entities."
-Build step 1 DONE (skeleton + Postgres via Docker Compose + /health → 200 OK, verified end-to-end). Next: step 2 — entities.
+Build step 2 DONE (all entities + Flyway V1 schema; 16 tables created, Hibernate ddl-auto=validate passes, verified end-to-end). Next: step 3 — core loop API (orders → seeding → batches → three counts + dispatch + tray reserve).
