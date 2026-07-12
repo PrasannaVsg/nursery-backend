@@ -4,6 +4,7 @@ import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapKeyColumn;
 import jakarta.persistence.Table;
@@ -28,8 +29,8 @@ public class Settings extends BaseEntity {
 
     private String language;
 
-    /** Crop -> lead time in days (chilli ~40, tomato ~24, ...). Editable. */
-    @ElementCollection
+    /** Crop -> lead time in days (chilli ~40, tomato ~24, ...). Editable. Small config map: fetch eagerly. */
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "settings_crop_lead_times", joinColumns = @JoinColumn(name = "settings_id"))
     @MapKeyColumn(name = "crop")
     @Column(name = "days")

@@ -51,4 +51,4 @@ Do not jump ahead. After each step: `docker compose up`, test in Postman, `git c
 
 ## Current step
 > Update this line as you go, e.g. "Working on: Build step 2 — entities."
-Build step 2 DONE (all entities + Flyway V1 schema; 16 tables created, Hibernate ddl-auto=validate passes, verified end-to-end). Next: step 3 — core loop API (orders → seeding → batches → three counts + dispatch + tray reserve).
+Build step 3 DONE (core loop API: orders CRUD + seeding→batch + three counts + dispatch + tray reserve/occupy/release; server-side rules enforced; verified end-to-end via smoke test). Deferred to step 7: batch stage/ready-date auto-computation. Pulled forward (minimal): Settings + /settings for tray total. Next: step 4 — money (order ledger, dues, close/discount/write-off).
