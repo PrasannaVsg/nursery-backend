@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: nursery-backend
+  datasource:
+    # Defaults target a locally-run Postgres; Docker Compose overrides the URL
+    # to use the "db" service name (see docker-compose.yml).
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/nursery}
+    username: ${SPRING_DATASOURCE_USERNAME:nursery}
+    password: ${SPRING_DATASOURCE_PASSWORD:nursery}
+  jpa:
+    hibernate:
+      # No entities yet (step 1). Flyway will own the schema from step 2 on.
+      ddl-auto: none
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+
+server:
+  port: 8080

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>శ్రీ లక్ష్మి నర్సరీ</title>
+<style>
+  :root{--foliage:#1F5E3A;--seed:#4CA66B;--peat:#8A5A3B;--paper:#FBF7F0;--ink:#1A2620;--amber:#E0952A;--line:#E7E0D3;--red:#C0492F;--sub:#6B7B70;--blue:#3B6E8A}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;font-family:'Noto Sans Telugu','Segoe UI',system-ui,sans-serif}
+  html,body{margin:0;background:#DED6C6}
+  #wrap{max-width:430px;margin:0 auto;min-height:100vh;background:var(--paper);position:relative;overflow:hidden}
+  .top{background:var(--foliage);color:#fff;padding:20px 20px 16px}.top .row{display:flex;justify-content:space-between;align-items:flex-start}
+  .brand{font-size:15px;font-weight:700;display:flex;align-items:center;gap:8px}.sub-top{font-size:12px;opacity:.8;margin-top:2px}
+  .roleBtn{background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:999px;padding:7px 13px;font-size:12px}
+  .back{background:none;border:none;color:#fff;font-size:14px;opacity:.9;padding:0}
+  .body{padding:20px 20px 100px;overflow-y:auto}
+  .card{background:#fff;border-radius:12px;padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.05);margin-bottom:10px}
+  .h3{font-size:14px;font-weight:700;color:var(--ink);margin:24px 0 12px}.h3.first{margin-top:0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .stat .n{font-size:24px;font-weight:700;color:var(--foliage)}.stat .n.amber{color:var(--amber)}.stat .n.red{color:var(--red)}
+  .stat .l{font-size:13px;font-weight:600;color:var(--ink)}.stat .s{font-size:12px;color:var(--sub)}
+  .mini{background:#fff;border-radius:12px;padding:12px;text-align:center;box-shadow:0 1px 2px rgba(0,0,0,.05)}
+  .mini .v{font-size:18px;font-weight:700;color:var(--ink)}.mini .v.red{color:var(--red)}.mini .l{font-size:11px;color:var(--sub)}
+  .mini .note{font-size:10px;color:var(--seed)}.mini .note.red{color:var(--red)}
+  .btn{border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:600;color:#fff;background:var(--foliage);width:100%}
+  .btn.seed{background:var(--seed)}.btn.blue{background:var(--blue)}.btn.peat{background:var(--peat)}.btn.amber{background:var(--amber)}.btn.red{background:var(--red)}
+  .btn.ghost{background:#fff;color:var(--red);border:1px solid var(--red)}.btn:disabled{background:var(--sub);opacity:.6}
+  .btn-sm{border:none;border-radius:9px;padding:9px 13px;font-size:13px;font-weight:600;color:#fff;background:var(--foliage)}
+  .btn-o{border:1px solid var(--red);background:#fff;color:var(--red);border-radius:9px;padding:9px 13px;font-size:13px;font-weight:600}
+  .pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:3px 9px;font-size:12px;font-weight:600}
+  .rowline{display:flex;justify-content:space-between;align-items:center;padding:5px 0}
+  .rowline .k{font-size:14px;color:var(--sub)}.rowline .v{font-size:14px;font-weight:600;color:var(--ink)}
+  .rowline .v.bold{font-size:16px;font-weight:700}.rowline .v.good{color:var(--seed)}.rowline .v.red{color:var(--red)}.rowline.sm .k,.rowline.sm .v{font-size:13px}
+  .note{border-radius:9px;padding:7px 9px;font-size:11px;background:#FBEFD9;color:var(--peat);margin-top:8px}
+  .note.warn{background:#FDECE7;color:var(--red)}.note.ok{background:#E8F3EC;color:var(--foliage)}
+  .field{margin-bottom:12px}.field label{display:block;font-size:12px;font-weight:600;color:var(--sub);margin-bottom:6px}
+  .field input{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);font-size:14px;color:var(--ink);background:#fff}
+  .chip{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:9px;padding:7px 12px;font-size:12px;margin:0 6px 6px 0}
+  .chip.on{background:var(--foliage);color:#fff}.chips{display:flex;flex-wrap:wrap}
+  .listbtn{width:100%;text-align:left;background:#fff;border:none;border-radius:12px;padding:16px;box-shadow:0 1px 2px rgba(0,0,0,.05);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center}
+  .listbtn .t{font-weight:600;color:var(--ink)}.listbtn .st{font-size:12px;color:var(--sub);margin-top:2px}.listbtn .rt{text-align:right}
+  .tl-item{display:flex;gap:12px}
+  .tl-dot{width:32px;height:32px;border-radius:999px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:14px}
+  .tl-line{width:1px;flex:1;background:var(--line);margin:2px auto;min-height:16px}
+  .tl-day{border-radius:999px;padding:2px 8px;font-size:10px;font-weight:700;color:#fff}
+  .tl-txt{font-size:14px;color:var(--ink);margin:3px 0 1px}.tl-meta{font-size:12px;color:var(--sub)}
+  .nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;display:flex;background:#fff;border-top:1px solid var(--line)}
+  .nav button{flex:1;background:none;border:none;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;color:var(--sub)}.nav button.on{color:var(--foliage)}
+  .toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;font-size:12px;padding:9px 16px;border-radius:999px;box-shadow:0 4px 12px rgba(0,0,0,.2);z-index:50;max-width:90%;text-align:center}
+  .banner{border-radius:12px;padding:10px 14px;font-size:12px;background:#E8F3EC;color:var(--foliage);margin-bottom:12px}
+  .owe{display:flex;justify-content:space-between;align-items:center;border-radius:12px;padding:10px 16px;background:#FDECE7;margin-bottom:4px}
+  .owe .k{font-size:14px;font-weight:600;color:var(--red)}.owe .v{font-size:16px;font-weight:700;color:var(--red)}
+  .exp{display:flex;justify-content:space-between;background:#fff;border-radius:9px;padding:10px 16px;margin-bottom:6px;box-shadow:0 1px 2px rgba(0,0,0,.04);font-size:14px}
+  .profit{background:var(--foliage);color:#fff;border-radius:16px;padding:20px}.profit .l{font-size:12px;opacity:.8}.profit .n{font-size:30px;font-weight:700;margin-top:4px}.profit .r{display:flex;gap:16px;margin-top:12px;font-size:12px;opacity:.9}
+  .ico{font-size:15px;line-height:1}
+  .bar{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin-top:6px}.bar > div{height:100%;background:var(--seed)}
+  .tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px}
+  .calhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .calnav{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:16px;color:var(--ink)}
+  .calgrid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+  .caldow{text-align:center;font-size:10px;color:var(--sub);font-weight:700;padding-bottom:2px}
+  .calcell{aspect-ratio:1;border-radius:9px;background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:5px;font-size:12px;color:var(--ink)}
+  .calcell.today{border-color:var(--foliage);border-width:2px}.calcell.blank{background:transparent;border:none}
+  .caldots{display:flex;gap:2px;margin-top:3px}.caldot{width:5px;height:5px;border-radius:999px}
+  .calweek .calcell{aspect-ratio:auto;height:74px}
+  .att-P{background:var(--seed);color:#fff}.att-A{background:var(--red);color:#fff}
+</style>
+</head>
+<body>
+<div id="wrap"><div id="top"></div><div class="body" id="body"></div><div class="nav" id="nav"></div></div>
+<div id="toast"></div>
+<script>
+function strip(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate());}
+var TODAY=strip(new Date());
+function addDays(d,n){var x=new Date(d);x.setDate(x.getDate()+n);return strip(x);}
+function ymd(d){var m=(d.getMonth()+1),day=d.getDate();return d.getFullYear()+"-"+(m<10?"0"+m:m)+"-"+(day<10?"0"+day:day);}
+function fromYmd(s){var p=s.split("-");return new Date(+p[0],+p[1]-1,+p[2]);}
+function diffDays(a,b){return Math.round((strip(a)-strip(b))/86400000);}
+var TE_MONTHS=["జనవరి","ఫిబ్రవరి","మార్చి","ఏప్రిల్","మే","జూన్","జూలై","ఆగస్టు","సెప్టెంబర్","అక్టోబర్","నవంబర్","డిసెంబర్"];
+var TE_M_SHORT=["జన","ఫిబ్ర","మార్చి","ఏప్రి","మే","జూన్","జూలై","ఆగ","సెప్","అక్టో","నవం","డిసెం"];
+var DOW=["ఆది","సోమ","మంగళ","బుధ","గురు","శుక్ర","శని"];
+function fmt(d){return d.getDate()+" "+TE_M_SHORT[d.getMonth()];}
+function isDue(t,date){if(t.type==="seed"){var o=orderById(t.order);if(o&&o.seededQty>=o.qty)return false;}
+  if(t.scopes&&t.scopes.length&&t.scopes.indexOf("nursery")<0){var anyOpen=false;t.scopes.forEach(function(sc){var b=batchById(sc);if(b&&!b.closed)anyOpen=true;});if(!anyOpen)return false;}
+  var s=strip(t.start);if(strip(date)<s)return false;var dd=diffDays(date,s);if(t.repeat==="once")return dd===0;if(t.repeat==="daily")return true;if(t.repeat==="weekly")return dd%7===0;if(t.repeat==="everyN")return dd%(t.n||5)===0;return false;}
+var CROPS=[{name:"మిర్చి (Chilli)",lead:40},{name:"టమాటా (Tomato)",lead:24},{name:"వంగ (Brinjal)",lead:35},{name:"క్యాప్సికం",lead:50},{name:"క్యాబేజీ",lead:30}];
+var EXP_CATS=["విత్తనం","కోకోపీట్","ట్రేలు","ఎరువులు","పురుగుమందులు","కూలీ","కరెంట్/నీళ్లు","రవాణా","అద్దె","ఇతర"];
+function estTrays(q){return Math.ceil(q*1.05/98);}
+function cropIdxByName(nm){for(var i=0;i<CROPS.length;i++)if(CROPS[i].name===nm)return i;return 0;}
+
+var S={
+  role:"owner",tab:"home",openBatch:null,orderOpen:null,screen:null,seedTarget:null,seedQty:"",
+  nb:{farmer:"",phone:"",cropIdx:0,variety:"",qty:"",wantBy:"",seed:"రైతుది",priceMode:"plant",rate:"1"},
+  seedWorker:"రవి",panel:null,spText:"",spWorker:"రవి",dQty:"",dWho:"యజమాని",payAmt:"",discAmt:"",woNote:"",cntVal:"",
+  ef:{catIdx:0,amt:"",note:""},advOpen:null,advAmt:"",
+  nt:{title:"",type:"water",scopes:[],worker:"రవి",repeat:"daily",n:"5",startMode:"today",startDate:"",order:""},
+  nw:{name:"",phone:"",type:"daily",rate:"",joinIdx:0},
+  nbEdit:null,nwEdit:null,ntEdit:null,payEdit:null,payEditAmt:"",expEdit:null,expEditAmt:"",
+  todayOut:0,settings:{trayTotal:2000},st:{trays:""},
+  calMode:"week",calRef:new Date(),dayOpen:null,miss:null,missNote:"",workerOpen:null,
+  requests:[{id:"R-31",farmer:"అంజలి రావు",phone:"98xxxx1122",crop:"వంగ (Brinjal)",variety:"Mahy 10",qty:8000,wantBy:"16 ఆగ",sowBy:"12 జూలై",seed:"రైతుది",priceMode:"plant",rate:1}],
+  orders:[
+    {id:"O-207",farmer:"రమేష్ నాయుడు",phone:"98xxxx4412",crop:"మిర్చి (Chilli)",variety:"Armour",qty:20000,wantBy:"28 జూలై",sowBy:"18 జూన్",seed:"రైతుది",priceMode:"plant",rate:1,seededQty:20000,batchIds:["B-207"],payments:[{date:"18 జూన్",amt:8000,kind:"అడ్వాన్స్"},{date:"12 జూలై",amt:5000,kind:"పార్ట్ చెల్లింపు"}],discount:0,writeoff:null,closed:false},
+    {id:"O-214",farmer:"సురేష్ కుమార్",phone:"90xxxx2211",crop:"మిర్చి (Chilli)",variety:"Teja",qty:15000,wantBy:"14 ఆగ",sowBy:"5 జూలై",seed:"రైతుది",priceMode:"plant",rate:1,seededQty:15000,batchIds:["B-214"],payments:[{date:"5 జూలై",amt:6000,kind:"అడ్వాన్స్"}],discount:0,writeoff:null,closed:false},
+    {id:"O-40",farmer:"వెంకట్ రెడ్డి",phone:"97xxxx8890",crop:"క్యాప్సికం",variety:"ఇంద్ర",qty:6000,wantBy:"20 ఆగ",sowBy:"2 జూలై",seed:"నర్సరీది",priceMode:"tray",rate:100,seededQty:0,batchIds:[],payments:[],discount:0,writeoff:null,closed:false}
+  ],
+  batches:[
+    {id:"B-207",orderId:"O-207",crop:"మిర్చి (Chilli)",variety:"Armour",seed:"రైతుది",ordered:20000,sown:21000,alive:20450,traysNum:214,sowDate:addDays(TODAY,-41),sownOn:"18 జూన్",ready:"28 జూలై",daysLeft:10,stage:"పెరుగుదల",currentDay:42,closed:false,
+     timeline:[{day:1,date:"18 జూన్",type:"seed",text:"విత్తనం వేశారు — 21,000",by:"రవి"},{day:5,date:"22 జూన్",type:"spray",text:"కాపర్ ఆక్సీక్లోరైడ్ 2g/L",by:"సురేష్"},{day:17,date:"4 జూలై",type:"spray",text:"ఫిప్రోనిల్ 2ml/L — తామర",by:"సురేష్"},{day:25,date:"12 జూలై",type:"count",text:"లెక్క — 20,450 బతికాయి",by:"రవి"},{day:42,date:"29 జూలై",type:"dispatch",text:"యజమాని తీసుకున్నారు",by:"యజమాని",qty:5000}]},
+    {id:"B-214",orderId:"O-214",crop:"మిర్చి (Chilli)",variety:"Teja",seed:"రైతుది",ordered:15000,sown:15750,alive:15600,traysNum:161,sowDate:addDays(TODAY,-6),sownOn:"5 జూలై",ready:"14 ఆగ",daysLeft:33,stage:"మొలక",currentDay:7,closed:false,
+     timeline:[{day:1,date:"5 జూలై",type:"seed",text:"విత్తనం వేశారు — 15,750",by:"లక్ష్మణ్"},{day:5,date:"9 జూలై",type:"spray",text:"కాపర్ ఆక్సీక్లోరైడ్",by:"సురేష్"}]}
+  ],
+  expenses:[{cat:"విత్తనం",amt:12000,date:"2 జూలై"},{cat:"కోకోపీట్",amt:6000,date:"3 జూలై"},{cat:"ట్రేలు",amt:8000,date:"1 జూలై"}],
+  workers:[
+    {name:"రవి",phone:"90xxxx1111",type:"monthly",rate:12000,joinDate:addDays(TODAY,-400),advances:[{date:"10 జూలై",amt:2000}],att:{}},
+    {name:"సురేష్",phone:"90xxxx2222",type:"daily",rate:400,joinDate:addDays(TODAY,-120),advances:[{date:"12 జూలై",amt:1000}],att:{}},
+    {name:"లక్ష్మణ్",phone:"90xxxx3333",type:"daily",rate:400,joinDate:addDays(TODAY,-60),advances:[],att:{}}
+  ],
+  tasks:[
+    {id:"T1",title:"ఉదయం నీళ్లు",type:"water",scopes:["B-207","B-214"],worker:"రవి",repeat:"daily",n:0,start:addDays(TODAY,-10),log:{}},
+    {id:"T3",title:"పురుగుమందు స్ప్రే",type:"spray",scopes:["B-207"],worker:"సురేష్",repeat:"weekly",n:0,start:addDays(TODAY,-7),log:{}},
+    {id:"T4",title:"వేస్టేజ్ క్లియరింగ్",type:"other",scopes:["nursery"],worker:"లక్ష్మణ్",repeat:"once",n:0,start:TODAY,log:{}},
+    {id:"T5",title:"ఫంగిసైడ్ స్ప్రే",type:"spray",scopes:["B-214"],worker:"సురేష్",repeat:"weekly",n:0,start:addDays(TODAY,-3),log:{}},
+    {id:"T6",title:"పెరాసిటమాల్ డ్రెంచ్",type:"spray",scopes:["B-207","B-214"],worker:"రవి",repeat:"everyN",n:5,start:addDays(TODAY,-2),log:{}},
+    {id:"T7",title:"విత్తనం వేయాలి",type:"seed",scopes:[],order:"O-40",worker:"లక్ష్మణ్",repeat:"once",n:0,start:TODAY,log:{}}
+  ]
+};
+(function(){var counts={"రవి":24,"సురేష్":18,"లక్ష్మణ్":20};S.workers.forEach(function(w){for(var d=1;d<=26;d++){var k=ymd(addDays(TODAY,-d));w.att[k]=(d<=counts[w.name])?"P":"A";}});
+S.tasks[0].log[ymd(addDays(TODAY,-1))]={status:"done"};S.tasks[0].log[ymd(addDays(TODAY,-2))]={status:"done"};S.tasks[0].log[ymd(addDays(TODAY,-3))]={status:"missed",note:"వర్షం వచ్చింది"};})();
+
+function num(n){return (typeof n==="number"?n.toLocaleString("en-IN"):n);}
+function toast(m){var t=document.getElementById("toast");t.innerHTML='<div class="toast">'+m+'</div>';clearTimeout(window._tt);window._tt=setTimeout(function(){t.innerHTML="";},2400);}
+function batchById(id){for(var i=0;i<S.batches.length;i++)if(S.batches[i].id===id)return S.batches[i];return null;}
+function orderById(id){for(var i=0;i<S.orders.length;i++)if(S.orders[i].id===id)return S.orders[i];return null;}
+function workerBy(n){for(var i=0;i<S.workers.length;i++)if(S.workers[i].name===n)return S.workers[i];return null;}
+function WNAMES(){return S.workers.map(function(w){return w.name;});}
+function dispatched(b){var s=0;b.timeline.forEach(function(e){if(e.type==="dispatch")s+=(e.qty||0);});return s;}
+function remaining(b){return b.alive-dispatched(b);}
+function openBatches(){return S.batches.filter(function(b){return !b.closed;});}
+function reservedTrays(){var s=0;S.orders.forEach(function(o){if(!o.closed){var un=o.qty-o.seededQty;if(un>0)s+=estTrays(un);}});return s;}
+function occTrays(b){if(b.closed)return 0;if(b.alive<=0)return 0;return Math.max(0,Math.ceil(b.traysNum*remaining(b)/b.alive));}
+function occupiedTrays(){var s=0;S.batches.forEach(function(b){s+=occTrays(b);});return s;}
+function usedTrays(){return reservedTrays()+occupiedTrays();}
+function freeTrays(){return S.settings.trayTotal-usedTrays();}
+function contractTotal(o){return o.priceMode==="tray"?estTrays(o.qty)*o.rate:o.qty*o.rate;}
+function paidTotal(o){var s=0;o.payments.forEach(function(p){s+=p.amt;});return s;}
+function obalance(o){return contractTotal(o)-paidTotal(o)-(o.discount||0)-(o.writeoff?o.writeoff.amt:0);}
+function contractLabel(o){return o.priceMode==="tray"?estTrays(o.qty)+" ట్రేలు × ₹"+num(o.rate):num(o.qty)+" మొక్కలు × ₹"+o.rate;}
+function orderDelivered(o){var s=0;o.batchIds.forEach(function(id){var b=batchById(id);if(b)s+=dispatched(b);});return s;}
+function pill(stage){var m={"పెరుగుదల":["#E8F3EC","var(--foliage)","🌱"],"మొలక":["#FBEFD9","var(--amber)","⏳"],"సిద్ధం":["#FDECE7","var(--red)","☀️"],"పూర్తయింది":["#EDEBE4","var(--sub)","✔️"]}[stage]||["#E8F3EC","var(--foliage)","🌱"];return '<span class="pill" style="background:'+m[0]+';color:'+m[1]+'"><span class="ico">'+m[2]+'</span>'+stage+'</span>';}
+var EV={seed:["var(--seed)","🌱","విత్తనం"],spray:["var(--blue)","💨","స్ప్రే"],water:["#4A90C2","💧","నీళ్లు"],count:["var(--amber)","🔢","లెక్క"],dispatch:["var(--peat)","📦","మొక్కలు తీశారు"],close:["var(--sub)","✔️","మూసివేత"]};
+function presentCount(w){var c=0;for(var k in w.att)if(w.att[k]==="P")c++;return c;}
+function earned(w){return w.type==="daily"?presentCount(w)*w.rate:w.rate;}
+function advTotal(w){var s=0;w.advances.forEach(function(a){s+=a.amt;});return s;}
+function netPay(w){return earned(w)-advTotal(w);}
+var REP={daily:"రోజూ",weekly:"వారానికి",everyN:"ప్రతి N రోజులకి",once:"ఒకసారి"};
+function repLabel(t){return t.repeat==="everyN"?"ప్రతి "+t.n+" రోజులకి":REP[t.repeat];}
+var TICON={water:"💧",spray:"💨",other:"🧹",seed:"🌱"};
+function scLabel1(sc){if(sc==="nursery")return "మొత్తం నర్సరీ";var b=batchById(sc);return b?b.crop.split(" ")[0]+" ("+sc+")":sc;}
+function scopesLabel(arr){return arr.map(scLabel1).join(", ");}
+function dueTasks(dateStr){var d=fromYmd(dateStr);return S.tasks.filter(function(t){return isDue(t,d);});}
+
+// nav
+window.setRole=function(){S.role=(S.role==="owner"?"worker":"owner");S.tab=(S.role==="owner"?"home":"tasks");S.openBatch=null;S.orderOpen=null;S.screen=null;render();};
+window.go=function(t){S.tab=t;S.openBatch=null;S.orderOpen=null;S.screen=null;S.panel=null;S.dayOpen=null;S.workerOpen=null;render();};
+window.openScreen=function(s){S.screen=s;S.dayOpen=null;S.workerOpen=null;render();};
+window.back=function(){if(S.dayOpen){S.dayOpen=null;render();return;}if(S.workerOpen){S.workerOpen=null;render();return;}if(S.orderOpen){S.orderOpen=null;render();return;}S.openBatch=null;S.screen=null;S.seedTarget=null;S.panel=null;S.advOpen=null;S.nbEdit=null;S.nwEdit=null;S.ntEdit=null;render();};
+window.openBatch=function(id){S.openBatch=id;S.panel=null;render();};
+window.openOrder=function(id){S.orderOpen=id;S.panel=null;render();};
+window.acceptReq=function(id){var r=null;S.requests=S.requests.filter(function(x){if(x.id===id){r=x;return false;}return true;});if(r){S.orders.unshift({id:"O-"+(Math.floor(Math.random()*900)+100),farmer:r.farmer,phone:r.phone,crop:r.crop,variety:r.variety,qty:r.qty,wantBy:r.wantBy,sowBy:r.sowBy,seed:r.seed,priceMode:r.priceMode||"plant",rate:r.rate||1,seededQty:0,batchIds:[],payments:[],discount:0,writeoff:null,closed:false});}toast(r.farmer+"కి WhatsApp వెళ్ళింది · ఆర్డర్ షెడ్యూల్");render();};
+window.rejectReq=function(id){if(!confirm("ఈ అభ్యర్థనను తిరస్కరించాలా?"))return;S.requests=S.requests.filter(function(x){return x.id!==id;});toast("అభ్యర్థన తిరస్కరించారు");render();};
+window.deleteOrder=function(id){var o=orderById(id);if(o.batchIds.length){toast("బ్యాచ్‌లు ఉన్నాయి — ముందు మూసివేయండి");return;}if(!confirm("ఈ ఆర్డర్ తీసేయాలా?"))return;S.orders=S.orders.filter(function(x){return x.id!==id;});S.orderOpen=null;toast("ఆర్డర్ తీసేశారు");render();};
+window.deleteWorker=function(name){if(!confirm(name+"ను తీసేయాలా?"))return;S.workers=S.workers.filter(function(w){return w.name!==name;});S.workerOpen=null;toast("వర్కర్ తీసేశారు");render();};
+window.deleteTask=function(id){if(!confirm("ఈ పనిని ఆపి తీసేయాలా? (ఇక షెడ్యూల్ కాదు)"))return;S.tasks=S.tasks.filter(function(t){return t.id!==id;});toast("పని ఆపేశారు");render();};
+window.tNB=function(k,v){S.nb[k]=v;};window.rNB=function(k,v){S.nb[k]=v;render();};
+window.editOrder=function(id){var o=orderById(id);S.nb={farmer:o.farmer,phone:o.phone,cropIdx:cropIdxByName(o.crop),variety:o.variety,qty:String(o.qty),wantBy:"",seed:o.seed,priceMode:o.priceMode,rate:String(o.rate)};S.nbEdit=id;S.screen="newBooking";render();};
+window.saveBooking=function(){var n=S.nb;if(!n.farmer||!n.qty){toast("పేరు, మొక్కలు నింపండి");return;}var crop=CROPS[n.cropIdx];
+  if(S.nbEdit){var o=orderById(S.nbEdit);o.farmer=n.farmer;o.phone=n.phone;o.crop=crop.name;o.variety=n.variety||"—";o.priceMode=n.priceMode;o.rate=parseInt(n.rate)||0;if(o.seededQty===0)o.qty=parseInt(n.qty);if(n.wantBy){var w2=new Date(n.wantBy);var r2=new Date(w2);r2.setDate(r2.getDate()+crop.lead);o.sowBy=fmt(w2);o.wantBy=fmt(r2);}S.nbEdit=null;S.nb={farmer:"",phone:"",cropIdx:0,variety:"",qty:"",wantBy:"",seed:"రైతుది",priceMode:"plant",rate:"1"};S.screen=null;toast("ఆర్డర్ మార్చారు");render();return;}
+  if(!n.wantBy){toast("తేదీ నింపండి");return;}var need=estTrays(parseInt(n.qty));if(need>freeTrays()){toast("⚠️ చోటు సరిపోదు — "+need+" ట్రేలు అవసరం, ఖాళీ "+num(freeTrays())+" మాత్రమే");return;}var w=new Date(n.wantBy);var rd=new Date(w);rd.setDate(rd.getDate()+crop.lead);S.orders.unshift({id:"O-"+(Math.floor(Math.random()*900)+100),farmer:n.farmer,phone:n.phone,crop:crop.name,variety:n.variety||"—",qty:parseInt(n.qty),wantBy:fmt(rd),sowBy:fmt(w),seed:n.seed,priceMode:n.priceMode,rate:parseInt(n.rate)||0,seededQty:0,batchIds:[],payments:[],discount:0,writeoff:null,closed:false});S.nb={farmer:"",phone:"",cropIdx:0,variety:"",qty:"",wantBy:"",seed:"రైతుది",priceMode:"plant",rate:"1"};S.screen=null;toast("ఆర్డర్ నమోదైంది");render();};
+window.startSeed=function(id){S.seedTarget=orderById(id);var rem=S.seedTarget.qty-S.seedTarget.seededQty;S.seedQty=String(rem);S.seedWorker=WNAMES()[0];S.screen="seed";render();};
+window.pickSeedWorker=function(w){S.seedWorker=w;render();};
+window.tSeedQ=function(v){S.seedQty=v;};
+window.doSeed=function(){var o=S.seedTarget;var rem=o.qty-o.seededQty;var portion=parseInt(S.seedQty)||rem;if(portion>rem)portion=rem;var t=new Date();var sown=Math.round(portion*1.05);var trays=Math.ceil(sown/98);var bid="B-"+(Math.floor(Math.random()*900)+100);S.batches.unshift({id:bid,orderId:o.id,crop:o.crop,variety:o.variety,seed:o.seed,ordered:portion,sown:sown,alive:sown,traysNum:trays,sowDate:TODAY,sownOn:fmt(t),ready:o.wantBy,daysLeft:35,stage:"మొలక",currentDay:1,closed:false,timeline:[{day:1,date:fmt(t),type:"seed",text:"విత్తనం వేశారు — "+num(sown),by:S.seedWorker}]});o.batchIds.push(bid);o.seededQty+=portion;if(S.seedTaskId){S.tasks.forEach(function(x){if(x.id===S.seedTaskId)x.log[S.seedTaskDay||ymd(TODAY)]={status:"done"};});S.seedTaskId=null;S.seedTaskDay=null;}S.screen=null;S.seedTarget=null;var left=o.qty-o.seededQty;toast(left>0?"పాక్షికం విత్తారు · మిగిలింది "+num(left)+" తర్వాత":"పూర్తిగా విత్తారు");render();};
+// batch production panels
+window.setPanel=function(p){S.panel=(S.panel===p?null:p);S.spText="";S.dQty="";S.payAmt="";S.discAmt="";S.woNote="";S.cntVal="";render();};
+window.tSP=function(v){S.spText=v;};window.tDQ=function(v){S.dQty=v;};window.tPay=function(v){S.payAmt=v;};window.tDisc=function(v){S.discAmt=v;};window.tWO=function(v){S.woNote=v;};window.rF=function(k,v){S[k]=v;render();};
+window.addSpray=function(id){if(!S.spText){toast("ఏం కొట్టారో రాయండి");return;}var b=batchById(id);b.timeline.push({day:b.currentDay,date:fmt(TODAY),type:"spray",text:S.spText,by:S.spWorker});S.panel=null;S.spText="";toast("స్ప్రే నమోదైంది");render();};
+window.addDispatch=function(id){var q=parseInt(S.dQty);if(!q){toast("ఎన్ని మొక్కలో రాయండి");return;}var b=batchById(id);var rem=remaining(b);if(q>rem){toast("మిగిలినవి "+num(rem)+" మాత్రమే — అంతకంటే ఎక్కువ తీయలేరు");return;}b.timeline.push({day:b.currentDay,date:fmt(TODAY),type:"dispatch",text:num(q)+" మొక్కలు తీసుకున్నారు",by:S.dWho,qty:q});S.panel=null;S.dQty="";toast("నమోదైంది · ట్రేలు విడుదల");render();};
+window.tCnt=function(v){S.cntVal=v;};
+window.addCount=function(id){var c=parseInt(S.cntVal);if(!c){toast("లెక్క రాయండి");return;}var b=batchById(id);var loss=b.alive-c;b.alive=c;b.timeline.push({day:b.currentDay,date:fmt(TODAY),type:"count",text:"లెక్క చూశారు — "+num(c)+" బతికాయి"+(loss>0?" ("+num(loss)+" నష్టం)":""),by:S.spWorker});S.panel=null;S.cntVal="";toast("లెక్క నమోదైంది · బతికినవి "+num(c));render();};
+// order money
+window.addPayment=function(oid){var a=parseInt(S.payAmt);if(!a){toast("మొత్తం రాయండి");return;}var o=orderById(oid);var kind=o.closed?"తర్వాత చెల్లింపు":(o.payments.length?"పార్ట్ చెల్లింపు":"అడ్వాన్స్");o.payments.push({date:fmt(TODAY),amt:a,kind:kind});S.panel=null;S.payAmt="";toast("₹"+num(a)+" చెల్లింపు నమోదైంది");render();};
+window.doClose=function(oid){var o=orderById(oid);var bal=obalance(o);if(!confirm("ఆర్డర్ మూసివేయాలా? బాకీ ₹"+num(bal)+(parseInt(S.discAmt)?" · డిస్కౌంట్ ₹"+num(parseInt(S.discAmt)):"")))return;var disc=parseInt(S.discAmt)||0;o.discount=disc;o.closed=true;o.batchIds.forEach(function(id){var b=batchById(id);if(b){b.closed=true;b.stage="పూర్తయింది";b.timeline.push({day:b.currentDay,date:fmt(TODAY),type:"close",text:"ఆర్డర్ మూసివేశారు"+(disc?" · డిస్కౌంట్ ₹"+num(disc):""),by:"యజమాని"});}});S.panel=null;S.discAmt="";toast(obalance(o)>0?"మూసివేయబడింది · బాకీ ₹"+num(obalance(o)):"మూసివేయబడింది · పూర్తిగా చెల్లింది");render();};
+window.doWriteoff=function(oid){var o=orderById(oid);var bal=obalance(o);if(!confirm("మిగిలిన ₹"+num(bal)+" మాఫీ చేయాలా? (వెనక్కి తీసుకోలేరు)"))return;o.writeoff={amt:bal,note:S.woNote||"మాఫీ"};S.panel=null;S.woNote="";toast("₹"+num(bal)+" మాఫీ · బాకీ క్లోజ్");render();};
+window.openPayEdit=function(oid,idx){S.payEdit={oid:oid,idx:idx};S.payEditAmt=String(orderById(oid).payments[idx].amt);render();};
+window.tPayEdit=function(v){S.payEditAmt=v;};
+window.savePayEdit=function(){var o=orderById(S.payEdit.oid);var a=parseInt(S.payEditAmt);if(a)o.payments[S.payEdit.idx].amt=a;S.payEdit=null;toast("చెల్లింపు మార్చారు");render();};
+window.delPay=function(oid,idx){if(!confirm("ఈ చెల్లింపు తీసేయాలా?"))return;orderById(oid).payments.splice(idx,1);S.payEdit=null;toast("చెల్లింపు తీసేశారు");render();};
+window.openExpEdit=function(idx){S.expEdit=idx;S.expEditAmt=String(S.expenses[idx].amt);render();};
+window.tExpEdit=function(v){S.expEditAmt=v;};
+window.saveExpEdit=function(){var a=parseInt(S.expEditAmt);if(a)S.expenses[S.expEdit].amt=a;S.expEdit=null;toast("ఖర్చు మార్చారు");render();};
+// expenses
+window.tEF=function(k,v){S.ef[k]=v;};window.efCat=function(i){S.ef.catIdx=i;render();};
+window.saveExpense=function(){var e=S.ef;var a=parseInt(e.amt);if(!a){toast("మొత్తం రాయండి");return;}S.expenses.unshift({cat:EXP_CATS[e.catIdx]+(e.note?" ("+e.note+")":""),amt:a,date:fmt(TODAY)});S.todayOut+=a;S.ef={catIdx:0,amt:"",note:""};S.screen=null;toast("ఖర్చు నమోదైంది");render();};
+// labour
+window.openAdv=function(name){S.advOpen=(S.advOpen===name?null:name);S.advAmt="";render();};window.tADV=function(v){S.advAmt=v;};
+window.giveAdv=function(name){var a=parseInt(S.advAmt);if(!a){toast("మొత్తం రాయండి");return;}workerBy(name).advances.push({date:fmt(TODAY),amt:a});S.expenses.unshift({cat:"కూలీ అడ్వాన్స్ - "+name,amt:a,date:fmt(TODAY)});S.todayOut+=a;S.advOpen=null;S.advAmt="";toast(name+"కి ₹"+num(a)+" అడ్వాన్స్");render();};
+window.paySalary=function(name){var w=workerBy(name);var net=netPay(w);if(net<0){toast("అడ్వాన్స్ ఎక్కువ · net రుణాత్మకం — ముందు సర్దుబాటు చేయండి");return;}if(!confirm(name+"కి ₹"+num(net)+" జీతం చెల్లించి, ఈ కాలం హాజరు+అడ్వాన్స్ రీసెట్ చేయాలా?"))return;if(!w.payslips)w.payslips=[];w.payslips.unshift({date:fmt(TODAY),net:net,days:presentCount(w),adv:advTotal(w)});S.expenses.unshift({cat:"జీతం - "+name,amt:net,date:fmt(TODAY)});S.todayOut+=net;w.att={};w.advances=[];toast(name+"కి ₹"+num(net)+" జీతం · payslip సేవ్");render();};
+// tasks
+window.tNT=function(k,v){S.nt[k]=v;};window.rNT=function(k,v){S.nt[k]=v;render();};
+window.toggleScope=function(id){var a=S.nt.scopes.filter(function(x){return x!=="nursery";});var i=a.indexOf(id);if(i>=0)a.splice(i,1);else a.push(id);S.nt.scopes=a;render();};
+window.pickNursery=function(){S.nt.scopes=["nursery"];render();};
+window.editTask=function(id){var t=null;S.tasks.forEach(function(x){if(x.id===id)t=x;});S.nt={title:t.title,type:t.type,scopes:t.scopes.slice(),worker:t.worker,repeat:t.repeat,n:String(t.n),startMode:"pick",startDate:ymd(strip(t.start))};S.ntEdit=id;S.screen="newTask";render();};
+window.createTask=function(){var t=S.nt;if(!t.title){toast("పని పేరు రాయండి");return;}
+  if(t.type==="seed"){if(!t.order){toast("ఏ ఆర్డర్ విత్తాలో ఎంచుకోండి");return;}var ntk={id:"T"+(Math.floor(Math.random()*9000)+1000),title:t.title,type:"seed",scopes:[],order:t.order,worker:t.worker,repeat:"once",n:0,start:TODAY,log:{}};if(S.ntEdit){S.tasks.forEach(function(x){if(x.id===S.ntEdit){x.title=t.title;x.type="seed";x.order=t.order;x.worker=t.worker;}});S.ntEdit=null;}else S.tasks.push(ntk);S.nt={title:"",type:"water",scopes:[],worker:WNAMES()[0],repeat:"daily",n:"5",startMode:"today",startDate:"",order:""};S.screen=null;toast("విత్తనం పని అప్పగించారు");render();return;}
+  if(!t.scopes.length){toast("బ్యాచ్ లేదా నర్సరీ ఎంచుకోండి");return;}var start=TODAY;if(t.startMode==="pick")start=t.startDate?fromYmd(t.startDate):TODAY;else if(t.startMode==="sow"){var best=null;t.scopes.forEach(function(sc){var b=batchById(sc);if(b&&(!best||b.sowDate<best))best=b.sowDate;});start=best||TODAY;}
+  if(S.ntEdit){var ex=null;S.tasks.forEach(function(x){if(x.id===S.ntEdit)ex=x;});ex.title=t.title;ex.type=t.type;ex.scopes=t.scopes.slice();ex.worker=t.worker;ex.repeat=t.repeat;ex.n=parseInt(t.n)||5;ex.start=start;S.ntEdit=null;S.nt={title:"",type:"water",scopes:[],worker:WNAMES()[0],repeat:"daily",n:"5",startMode:"today",startDate:"",order:""};S.screen=null;toast("పని మార్చారు");render();return;}
+  S.tasks.push({id:"T"+(Math.floor(Math.random()*9000)+1000),title:t.title,type:t.type,scopes:t.scopes.slice(),worker:t.worker,repeat:t.repeat,n:parseInt(t.n)||5,start:start,log:{}});S.nt={title:"",type:"water",scopes:[],worker:WNAMES()[0],repeat:"daily",n:"5",startMode:"today",startDate:"",order:""};S.screen=null;toast("పని అప్పగించారు");render();};
+window.markDone=function(id,dstr){var t=null;S.tasks.forEach(function(x){if(x.id===id)t=x;});
+  if(t.type==="seed"){var o=orderById(t.order);if(!o||o.seededQty>=o.qty){toast("ఈ ఆర్డర్ ఇప్పటికే విత్తారు");t.log[dstr]={status:"done"};render();return;}S.seedTarget=o;S.seedQty=String(o.qty-o.seededQty);S.seedWorker=t.worker;S.seedTaskId=id;S.seedTaskDay=dstr;S.screen="seed";render();return;}
+  t.log[dstr]={status:"done"};
+  if(t.type==="spray"||t.type==="water"){t.scopes.forEach(function(sc){if(sc==="nursery")return;var b=batchById(sc);if(b&&!b.closed){b.timeline.push({day:b.currentDay,date:fmt(fromYmd(dstr)),type:t.type,text:t.title+" (పని నుంచి)",by:t.worker});}});}
+  S.miss=null;toast(t.scopes.indexOf("nursery")<0&&(t.type==="spray"||t.type==="water")?"పూర్తి · బ్యాచ్ ట్రాకింగ్‌లో నమోదైంది":"పూర్తయింది");render();};
+window.openMiss=function(id,dstr){S.miss={id:id,d:dstr};S.missNote="";render();};window.tMiss=function(v){S.missNote=v;};
+window.saveMiss=function(){var t=null;S.tasks.forEach(function(x){if(x.id===S.miss.id)t=x;});t.log[S.miss.d]={status:"missed",note:S.missNote||"—"};S.miss=null;S.missNote="";toast("కాలేదు అని నమోదైంది");render();};
+// calendar
+window.calSet=function(m){S.calMode=m;render();};
+window.calShift=function(dir){var r=new Date(S.calRef);if(S.calMode==="month")r.setMonth(r.getMonth()+dir);else r.setDate(r.getDate()+dir*7);S.calRef=r;render();};
+window.openDay=function(dstr){S.dayOpen=dstr;S.miss=null;render();};
+window.setAtt=function(name,dstr,v){workerBy(name).att[dstr]=v;toast(name+" — "+(v==="P"?"హాజరు":"గైర్హాజరు"));render();};
+// workers/settings
+window.tNW=function(k,v){S.nw[k]=v;};window.rNW=function(k,v){S.nw[k]=v;render();};
+window.editWorker=function(name){var w=workerBy(name);S.nw={name:w.name,phone:w.phone,type:w.type,rate:String(w.rate),joinIdx:0};S.nwEdit=name;S.screen="addWorker";render();};
+window.saveWorker=function(){var w=S.nw;if(!w.name||!w.rate){toast("పేరు, రేటు నింపండి");return;}
+  if(S.nwEdit){var ex=workerBy(S.nwEdit);ex.phone=w.phone;ex.type=w.type;ex.rate=parseInt(w.rate);S.nwEdit=null;S.nw={name:"",phone:"",type:"daily",rate:"",joinIdx:0};S.screen=null;toast("వర్కర్ వివరాలు మార్చారు");render();return;}
+  S.workers.push({name:w.name,phone:w.phone,type:w.type,rate:parseInt(w.rate),joinDate:addDays(TODAY,-[0,30,90][w.joinIdx]),advances:[],att:{}});S.nw={name:"",phone:"",type:"daily",rate:"",joinIdx:0};S.screen=null;toast("వర్కర్ చేర్చారు");render();};
+window.openWorker=function(name){S.workerOpen=name;render();};
+window.tST=function(v){S.st.trays=v;};window.openSettings=function(){S.st.trays=String(S.settings.trayTotal);S.screen="settings";render();};
+window.saveSettings=function(){var t=parseInt(S.st.trays);if(!t){toast("ట్రేల సంఖ్య రాయండి");return;}S.settings.trayTotal=t;S.screen=null;toast("మొత్తం ట్రేలు: "+num(t));render();};
+
+function render(){
+  var isOwner=S.role==="owner";var top=document.getElementById("top");
+  if(S.openBatch||S.orderOpen||S.screen||S.dayOpen||S.workerOpen)top.innerHTML='<div class="top"><button class="back" onclick="back()">‹ వెనక్కి</button></div>';
+  else top.innerHTML='<div class="top"><div class="row"><div><div class="brand">🌿 శ్రీ లక్ష్మి నర్సరీ</div><div class="sub-top">గుంటూరు, ఆంధ్రప్రదేశ్</div></div><button class="roleBtn" onclick="setRole()">👤 '+(isOwner?"యజమాని":"పనివాడు")+'</button></div></div>';
+  var b=document.getElementById("body");var active=isOwner?S.tab:(S.tab==="batches"?"batches":"tasks");
+  if(S.workerOpen)b.innerHTML=viewWorkerProfile(workerBy(S.workerOpen));
+  else if(S.dayOpen)b.innerHTML=viewDay(S.dayOpen);
+  else if(S.orderOpen)b.innerHTML=viewOrder(orderById(S.orderOpen),isOwner);
+  else if(S.screen==="newBooking")b.innerHTML=viewNewBooking();
+  else if(S.screen==="seed")b.innerHTML=viewSeed();
+  else if(S.screen==="addExpense")b.innerHTML=viewAddExpense();
+  else if(S.screen==="labour")b.innerHTML=viewLabour();
+  else if(S.screen==="newTask")b.innerHTML=viewNewTask();
+  else if(S.screen==="calendar")b.innerHTML=viewCalendar();
+  else if(S.screen==="workers")b.innerHTML=viewWorkers();
+  else if(S.screen==="addWorker")b.innerHTML=viewAddWorker();
+  else if(S.screen==="settings")b.innerHTML=viewSettings();
+  else if(S.openBatch)b.innerHTML=viewBatch(batchById(S.openBatch),isOwner);
+  else if(active==="home")b.innerHTML=viewHome();
+  else if(active==="bookings")b.innerHTML=viewBookings();
+  else if(active==="batches")b.innerHTML=viewBatches();
+  else if(active==="tasks")b.innerHTML=viewTasks(isOwner);
+  else if(active==="money")b.innerHTML=viewMoney();
+  var nav=document.getElementById("nav");
+  var items=isOwner?[["home","🏠","హోమ్"],["bookings","📋","ఆర్డర్లు"],["batches","🌱","బ్యాచ్‌లు"],["tasks","✅","పనులు"],["money","💰","డబ్బు"]]:[["tasks","✅","నా పనులు"],["batches","🌱","బ్యాచ్‌లు"]];
+  nav.innerHTML=items.map(function(it){var on=(active===it[0]&&!S.openBatch&&!S.orderOpen&&!S.screen&&!S.dayOpen&&!S.workerOpen);return '<button class="'+(on?"on":"")+'" onclick="go(\''+it[0]+'\')"><span class="ico" style="font-size:19px">'+it[1]+'</span>'+it[2]+'</button>';}).join("");
+}
+function stat(n,l,s,cls){return '<div class="card stat"><div class="n '+(cls||"")+'">'+n+'</div><div class="l">'+l+'</div><div class="s">'+s+'</div></div>';}
+function mini(l,v,note,red){return '<div class="mini"><div class="v '+(red?"red":"")+'">'+num(v)+'</div><div class="l">'+l+'</div>'+(note?'<div class="note '+(red?"red":"")+'">'+note+'</div>':'')+'</div>';}
+function batchRow(bt){return '<button class="listbtn" onclick="openBatch(\''+bt.id+'\')"><div><div class="t">'+bt.crop+' · '+bt.variety+'</div><div class="st">'+bt.id+' · '+num(bt.alive)+' మొక్కలు · ఆర్డర్ '+bt.orderId+'</div></div><div class="rt">'+pill(bt.stage)+'<div class="st" style="color:'+(bt.closed?"var(--sub)":(bt.daysLeft<=15?"var(--red)":"var(--sub)"))+'">'+(bt.closed?"మూసివేశారు":bt.daysLeft+" రోజులు")+'</div></div></button>';}
+function field(l,inner){return '<div class="field"><label>'+l+'</label>'+inner+'</div>';}
+function rl(k,v,cls,sm){return '<div class="rowline '+(sm?"sm":"")+'"><span class="k">'+k+'</span><span class="v '+(cls||"")+'">'+v+'</span></div>';}
+
+function viewHome(){
+  var dues=0,ready=[];S.orders.forEach(function(o){var bl=obalance(o);if(bl>0)dues+=bl;});openBatches().forEach(function(b){if(b.daysLeft<=15)ready.push(b);});
+  var free=freeTrays();var res=reservedTrays();var occ=occupiedTrays();var tot=S.settings.trayTotal;var pct=Math.round((res+occ)/tot*100);
+  var sched=S.orders.filter(function(o){return !o.closed&&o.seededQty<o.qty;}).length;
+  var h='<div class="grid2">'+stat(S.requests.length+sched,"ఆర్డర్లు","కొత్త + విత్తాలి","amber")+stat(openBatches().length,"బ్యాచ్‌లు","పెరుగుతున్నవి")+'</div>';
+  h+='<div class="grid2" style="margin-top:10px">'+stat("₹"+num(S.todayOut),"ఈరోజు ఖర్చు","today out","red")+stat("₹"+num(dues),"రైతు బాకీలు","వసూలు","amber")+'</div>';
+  h+='<div class="card" style="margin-top:10px"><div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;font-weight:600;color:var(--ink)">ఖాళీ స్థలం</span><span style="font-size:13px;font-weight:700;color:var(--foliage)">'+num(free)+' / '+num(tot)+' ట్రేలు</span></div><div class="bar"><div style="width:'+pct+'%"></div></div><div style="font-size:11px;color:var(--sub);margin-top:5px">🟨 రిజర్వ్ '+num(res)+' · 🟩 వాడుకలో '+num(occ)+' · ~'+num(free*98)+' మొక్కలకి</div><button class="chip" style="margin:8px 0 0;font-size:11px" onclick="openSettings()">⚙️ ట్రేల సంఖ్య మార్చు</button></div>';
+  h+='<button class="btn" style="margin-top:12px" onclick="openScreen(\'newBooking\')">➕ కొత్త బుకింగ్ తీసుకో</button>';
+  h+='<div class="h3">త్వరలో సిద్ధం</div>'+(ready.length?ready.map(batchRow).join(""):'<div style="font-size:12px;color:var(--sub)">ఏమీ లేవు.</div>');
+  return h;
+}
+function viewBookings(){
+  var h='<button class="btn" onclick="openScreen(\'newBooking\')">➕ కొత్త బుకింగ్ తీసుకో</button>';
+  if(S.requests.length){h+='<div class="h3">కొత్త అభ్యర్థనలు</div>'+S.requests.map(function(r){return '<div class="card"><div style="display:flex;justify-content:space-between"><div><div style="font-weight:600;color:var(--ink)">'+r.farmer+'</div><div style="font-size:13px;color:var(--sub)">'+r.crop+' · '+r.variety+'</div></div><div style="font-weight:700;color:var(--foliage)">'+num(r.qty)+'</div></div><div class="note">🌱 '+r.wantBy+'కి → <b>'+r.sowBy+'న విత్తాలి</b> · విత్తనం: '+r.seed+'</div><div style="display:flex;gap:8px;margin-top:10px"><button class="btn-sm" style="flex:1" onclick="acceptReq(\''+r.id+'\')">✓ అంగీకరించు</button><button class="btn-o" style="flex:1" onclick="rejectReq(\''+r.id+'\')">✗ తిరస్కరించు</button></div></div>';}).join("");}
+  var toseed=S.orders.filter(function(o){return !o.closed&&o.seededQty<o.qty;});
+  h+='<div class="h3'+(S.requests.length?'':' first')+'">విత్తాల్సినవి (ఆర్డర్లు)</div>';
+  if(!toseed.length)h+='<div style="font-size:12px;color:var(--sub)">ఏమీ లేవు.</div>';
+  h+=toseed.map(function(o){var left=o.qty-o.seededQty;var part=o.seededQty>0;return '<div class="card"><div style="display:flex;justify-content:space-between"><div><div style="font-weight:600;color:var(--ink)">'+o.farmer+'</div><div style="font-size:13px;color:var(--sub)">'+o.crop+' · '+o.variety+' · '+o.id+'</div></div>'+(part?'<span class="tag" style="background:#FBEFD9;color:var(--amber)">పాక్షికం</span>':'')+'</div><div style="font-size:12px;color:var(--peat);margin-top:6px">విత్తే తేదీ: <b>'+o.sowBy+'</b> · సిద్ధం: <b>'+o.wantBy+'</b><br>ఒప్పందం: '+contractLabel(o)+' = <b>₹'+num(contractTotal(o))+'</b></div>'+(part?'<div class="note">ఇప్పటికే '+num(o.seededQty)+' విత్తారు · మిగిలింది '+num(left)+'</div>':'<div class="note">🟨 రిజర్వ్: '+estTrays(left)+' ట్రేలు</div>')+'<button class="btn seed" style="margin-top:10px" onclick="startSeed(\''+o.id+'\')">🌱 విత్తనం వేసినట్టు నమోదు '+(part?'(మిగిలింది '+num(left)+')':'')+'</button><button class="chip" style="width:100%;text-align:center;margin-top:8px" onclick="editOrder(\''+o.id+'\')">✏️ ఆర్డర్ వివరాలు మార్చు</button></div>';}).join("");
+  return h;
+}
+function viewNewBooking(){
+  var n=S.nb,crop=CROPS[n.cropIdx],readyD="—";if(n.wantBy){var w=new Date(n.wantBy);var rd=new Date(w);rd.setDate(rd.getDate()+crop.lead);readyD=fmt(rd);}
+  var seededEdit=S.nbEdit&&orderById(S.nbEdit)&&orderById(S.nbEdit).seededQty>0;
+  var q=n.qty?parseInt(n.qty):0,rate=n.rate?parseInt(n.rate):0;var tot=n.priceMode==="tray"?estTrays(q)*rate:q*rate;
+  var totLab=q&&rate?(n.priceMode==="tray"?estTrays(q)+" ట్రేలు × ₹"+rate+" = ₹"+num(tot):num(q)+" మొక్కలు × ₹"+rate+" = ₹"+num(tot)):"—";
+  var need=q?estTrays(q):0;var free=freeTrays();var capNote=need?(need<=free?'<div class="note ok">✅ '+need+' ట్రేలు · ఖాళీ '+num(free)+' — చోటు ఉంది</div>':'<div class="note warn">⚠️ '+need+' ట్రేలు · ఖాళీ '+num(free)+' — చోటు సరిపోదు!</div>'):"";
+  var chips=CROPS.map(function(c,i){return '<button class="chip '+(i===n.cropIdx?"on":"")+'" onclick="rNB(\'cropIdx\','+i+')">'+c.name+'</button>';}).join("");
+  var seedChips=["రైతుది","నర్సరీది"].map(function(s){return '<button class="chip '+(n.seed===s?"on":"")+'" style="flex:1" onclick="rNB(\'seed\',\''+s+'\')">'+s+'</button>';}).join("");
+  var modeChips=[["plant","మొక్కకి"],["tray","ట్రేకి"]].map(function(m){return '<button class="chip '+(n.priceMode===m[0]?"on":"")+'" style="flex:1" onclick="rNB(\'priceMode\',\''+m[0]+'\')">'+m[1]+'</button>';}).join("");
+  return '<div style="font-size:18px;font-weight:700;color:var(--ink);margin-bottom:16px">'+(S.nbEdit?"ఆర్డర్ మార్చు":"కొత్త బుకింగ్")+'</div>'
+    +field("రైతు పేరు",'<input value="'+n.farmer+'" oninput="tNB(\'farmer\',this.value)" placeholder="ఉదా. రమేష్">')
+    +field("ఫోన్",'<input value="'+n.phone+'" oninput="tNB(\'phone\',this.value)" placeholder="98xxxxxxxx">')
+    +field("పంట",'<div class="chips">'+chips+'</div>')+field("వెరైటీ",'<input value="'+n.variety+'" oninput="tNB(\'variety\',this.value)" placeholder="Armour">')
+    +field("ఎన్ని మొక్కలు",'<input value="'+n.qty+'" oninput="tNB(\'qty\',this.value.replace(/[^0-9]/g,\'\'))" onchange="render()" inputmode="numeric" placeholder="20000">')
+    +field("విత్తే తేదీ (seeded date)",'<input type="date" value="'+n.wantBy+'" onchange="rNB(\'wantBy\',this.value)">')
+    +field("విత్తనం ఎవరిది",'<div class="chips" style="display:flex">'+seedChips+'</div>')+field("ధర ఎలా",'<div class="chips" style="display:flex;'+(seededEdit?"opacity:.5;pointer-events:none":"")+'">'+modeChips+'</div>')
+    +field(n.priceMode==="tray"?"ఒక్కో ట్రే ధర (₹)":"ఒక్కో మొక్క ధర (₹)",'<input value="'+n.rate+'" '+(seededEdit?"disabled style=\"background:#F3F0E8\"":"")+' oninput="tNB(\'rate\',this.value.replace(/[^0-9]/g,\'\'))" onchange="render()" inputmode="numeric" placeholder="'+(n.priceMode==="tray"?"100":"1")+'">')
+    +(seededEdit?'<div class="note warn">⚠️ ఈ ఆర్డర్ ఇప్పటికే విత్తారు — పంట/వెరైటీ/ధర/మొత్తం మార్చలేరు (డేటా integrity). పేరు, ఫోన్ మాత్రమే మార్చవచ్చు.</div>':"")
+    +'<div class="note ok" style="font-size:13px">💰 ఒప్పందం: <b>'+totLab+'</b></div><div class="note" style="font-size:13px">🌾 సిద్ధమయ్యే తేదీ (ready): <b>'+readyD+'</b>'+(n.wantBy?' · '+crop.lead+' రోజుల్లో':'')+(S.nbEdit?" · తేదీ మార్చకపోతే పాతదే":"")+'</div>'+capNote
+    +'<button class="btn" style="margin-top:14px" onclick="saveBooking()">'+(S.nbEdit?"మార్పులు సేవ్ చేయి":"బుకింగ్ నమోదు చేయి")+'</button>';
+}
+function viewSeed(){
+  var o=S.seedTarget;if(!o)return"";var rem=o.qty-o.seededQty;var portion=parseInt(S.seedQty)||0;var sown=Math.round(portion*1.05),trays=Math.ceil(sown/98);
+  var chips=WNAMES().map(function(w){return '<button class="chip '+(S.seedWorker===w?"on":"")+'" onclick="pickSeedWorker(\''+w+'\')">'+w+'</button>';}).join("");
+  return '<div style="font-size:18px;font-weight:700;color:var(--ink)">విత్తనం వేసినట్టు నమోదు</div><div style="font-size:14px;color:var(--sub);margin:2px 0 16px">'+o.farmer+' · '+o.crop+' · ఆర్డర్ '+num(o.qty)+' · మిగిలింది '+num(rem)+'</div>'
+    +field("ఇప్పుడు ఎన్ని విత్తాలి",'<input value="'+S.seedQty+'" oninput="tSeedQ(this.value.replace(/[^0-9]/g,\'\'))" onchange="render()" inputmode="numeric" placeholder="'+rem+'">')
+    +'<div class="note">మొత్తం ఆర్డర్ ఒకేసారి విత్తనవసరం లేదు — కొంత ఇప్పుడు, మిగిలింది తర్వాత (వేరే బ్యాచ్‌గా). స్థలం లేకపోతే ఇలా విడగొట్టవచ్చు.</div>'
+    +'<div class="card" style="margin-top:10px">'+rl("విత్తిన తేదీ",fmt(TODAY)+" (ఈరోజు)")+rl("విత్తినవి (buffer)",num(sown))+rl("ట్రేలు",trays+" (98-సెల్)")+'</div>'
+    +field("ఎవరు విత్తారు",'<div class="chips">'+chips+'</div>')+'<button class="btn seed" style="margin-top:10px" onclick="doSeed()">🌱 నమోదు చేసి బ్యాచ్ మొదలుపెట్టు</button>';
+}
+function viewBatches(){var open=openBatches(),closed=S.batches.filter(function(b){return b.closed;});var h='<div class="h3 first">ప్రస్తుత బ్యాచ్‌లు</div>'+(open.length?open.map(batchRow).join(""):'<div style="font-size:12px;color:var(--sub)">ఏమీ లేవు.</div>');if(closed.length)h+='<div class="h3">మూసిన బ్యాచ్‌లు</div>'+closed.map(batchRow).join("");return h;}
+
+function moneyBlock(o,isOwner){
+  var bal=obalance(o);
+  var h='<div class="card">'+rl("ఒప్పందం",contractLabel(o),"bold")+'<div style="font-size:11px;color:var(--sub);margin:6px 0 2px">చెల్లింపులు:</div>';
+  if(!o.payments.length)h+='<div style="font-size:12px;color:var(--sub)">ఇంకా చెల్లించలేదు</div>';
+  o.payments.forEach(function(p,idx){
+    if(isOwner&&S.payEdit&&S.payEdit.oid===o.id&&S.payEdit.idx===idx){h+='<div class="card" style="box-shadow:none;border:1px solid var(--line);margin:4px 0">'+field(p.kind+" మార్చు (₹)",'<input value="'+S.payEditAmt+'" oninput="tPayEdit(this.value.replace(/[^0-9]/g,\'\'))" inputmode="numeric">')+'<div style="display:flex;gap:8px"><button class="btn" style="flex:1" onclick="savePayEdit()">సేవ్</button><button class="btn-o" onclick="delPay(\''+o.id+'\','+idx+')">తీసేయి</button></div></div>';}
+    else{h+='<div class="rowline sm"><span class="k">'+p.kind+' · '+p.date+(isOwner?' <span onclick="openPayEdit(\''+o.id+'\','+idx+')" style="color:var(--blue);cursor:pointer">✏️</span>':'')+'</span><span class="v good">₹'+num(p.amt)+'</span></div>';}
+  });
+  h+='<div style="border-top:1px dashed var(--line);margin:4px 0"></div>'+rl("మొత్తం చెల్లించింది","₹"+num(paidTotal(o)),"good",true);
+  if(o.discount)h+=rl("డిస్కౌంట్","−₹"+num(o.discount),"red",true);
+  if(o.writeoff)h+=rl("మాఫీ ("+o.writeoff.note+")","−₹"+num(o.writeoff.amt),"red",true);
+  h+='<div style="border-top:1px solid var(--line);margin:6px 0"></div>'+rl(bal>0?"మిగిలిన బాకీ":"బాకీ","₹"+num(bal),bal>0?"bold red":"bold good")+'</div>';
+  if(isOwner){
+    h+='<button class="chip" style="width:100%;text-align:center;'+(S.panel==="pay"?"background:var(--foliage);color:#fff":"")+'" onclick="setPanel(\'pay\')">➕ చెల్లింపు చేర్చు</button>';
+    if(S.panel==="pay")h+='<div class="card" style="margin-top:8px">'+field("ఎంత చెల్లించారు (₹)",'<input value="'+S.payAmt+'" oninput="tPay(this.value.replace(/[^0-9]/g,\'\'))" inputmode="numeric" placeholder="2000">')+'<button class="btn" onclick="addPayment(\''+o.id+'\')">చెల్లింపు నమోదు</button></div>';
+    if(!o.closed){h+='<button class="chip" style="width:100%;text-align:center;margin-top:8px;'+(S.panel==="close"?"background:var(--red);color:#fff":"")+'" onclick="setPanel(\'close\')">✔️ ఆర్డర్ మూసివేయి</button>';if(S.panel==="close")h+='<div class="card" style="margin-top:8px"><div class="note">బాకీ ఉన్నా మూసివేయవచ్చు · అన్ని బ్యాచ్‌లు మూసివేయబడతాయి, ట్రేలు విడుదల.</div>'+rl("ప్రస్తుత బాకీ","₹"+num(bal),"bold",true)+field("డిస్కౌంట్ (₹)",'<input value="'+S.discAmt+'" oninput="tDisc(this.value.replace(/[^0-9]/g,\'\'))" inputmode="numeric" placeholder="500">')+'<button class="btn red" onclick="doClose(\''+o.id+'\')">మూసివేయి</button></div>';}
+    if(o.closed&&bal>0){h+='<button class="chip" style="width:100%;text-align:center;margin-top:8px;'+(S.panel==="writeoff"?"background:var(--amber);color:#fff":"")+'" onclick="setPanel(\'writeoff\')">🚫 మిగిలిన బాకీ మాఫీ</button>';if(S.panel==="writeoff")h+='<div class="card" style="margin-top:8px"><div class="note">మిగిలిన ₹'+num(bal)+' మాఫీ చేసి క్లోజ్.</div>'+field("నోట్",'<input value="'+S.woNote+'" oninput="tWO(this.value)" placeholder="ఎందుకు">')+'<button class="btn amber" onclick="doWriteoff(\''+o.id+'\')">₹'+num(bal)+' మాఫీ</button></div>';}
+  }
+  if(o.closed)h+='<div class="note '+(bal>0?"warn":"ok")+'" style="margin-top:12px">'+(bal>0?"⚠️ మూసివేసినా ₹"+num(bal)+" బాకీ":"✔️ పూర్తిగా సెటిల్")+'</div>';
+  return h;
+}
+function viewBatch(bt,isOwner){
+  var o=orderById(bt.orderId);var disp=dispatched(bt),rem=remaining(bt);
+  var tl=bt.timeline.map(function(e,i){var m=EV[e.type],last=(i===bt.timeline.length-1);return '<div class="tl-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="tl-dot" style="background:'+m[0]+'22">'+m[1]+'</div>'+(last?'':'<div class="tl-line"></div>')+'</div><div style="flex:1;padding-bottom:'+(last?'0':'16px')+'"><div><span class="tl-day" style="background:'+m[0]+'">Day-'+e.day+'</span> <span style="font-size:12px;font-weight:600;color:var(--sub)">'+e.date+'</span></div><div class="tl-txt">'+e.text+'</div><div class="tl-meta">'+m[2]+' · <span style="color:var(--foliage)">'+e.by+'</span>'+(e.qty?' · '+num(e.qty):'')+'</div></div></div>';}).join("");
+  var h='<div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-size:12px;color:var(--sub)">'+bt.id+' · ఆర్డర్ '+bt.orderId+' · విత్తనం '+bt.seed+'</div><div style="font-size:18px;font-weight:700;color:var(--ink)">'+bt.crop+'</div><div style="font-size:14px;color:var(--sub)">'+bt.variety+' · '+o.farmer+'</div></div>'+pill(bt.stage)+'</div>';
+  h+='<div class="grid3" style="margin-top:16px">'+mini("ఈ బ్యాచ్",bt.ordered)+mini("బతికినవి",bt.alive)+mini(bt.closed?"డెలివరీ":"మిగిలినవి",bt.closed?disp:rem,disp?"−"+num(disp):"పూర్తిగా",!!disp)+'</div>';
+  h+='<div class="note">🟩 ట్రేలు: వాడుకలో '+num(occTrays(bt))+' / మొత్తం '+num(bt.traysNum)+' — మొక్కలు తీసినకొద్దీ ఖాళీ'+(bt.closed?" (మూసివేత → విడుదల)":"")+'</div>';
+  if(o.batchIds.length>1)h+='<div class="note ok">ℹ️ ఈ ఆర్డర్‌కి '+o.batchIds.length+' బ్యాచ్‌లు ('+o.batchIds.join(", ")+'). డబ్బు ఆర్డర్ మొత్తానికి.</div>';
+  h+='<div class="h3">రోజువారీ ట్రాకింగ్</div><div class="card">'+tl+'</div>';
+  if(isOwner&&!bt.closed){
+    h+='<div class="h3">కార్యకలాపం నమోదు</div><div style="display:flex;gap:8px"><button class="chip" style="flex:1;text-align:center;'+(S.panel==="spray"?"background:var(--blue);color:#fff":"")+'" onclick="setPanel(\'spray\')">💨 స్ప్రే</button><button class="chip" style="flex:1;text-align:center;'+(S.panel==="count"?"background:var(--amber);color:#fff":"")+'" onclick="setPanel(\'count\')">🔢 లెక్క</button><button class="chip" style="flex:1;text-align:center;'+(S.panel==="dispatch"?"background:var(--peat);color:#fff":"")+'" onclick="setPanel(\'dispatch\')">📦 తీశారు</button></div>';
+    if(S.panel==="count"){var cw=WNAMES().map(function(w){return '<button class="chip '+(S.spWorker===w?"on":"")+'" onclick="rF(\'spWorker\',\''+w+'\')">'+w+'</button>';}).join("");h+='<div class="card" style="margin-top:10px"><div style="font-size:12px;color:var(--sub);margin-bottom:8px">ప్రస్తుతం బతికినవి: '+num(bt.alive)+' · కొత్త లెక్క వేస్తే మార్పు + నష్టం నమోదవుతుంది</div>'+field("ఇప్పుడు ఎన్ని బతికాయి",'<input value="'+S.cntVal+'" oninput="tCnt(this.value.replace(/[^0-9]/g,\'\'))" inputmode="numeric" placeholder="'+bt.alive+'">')+field("ఎవరు లెక్కించారు",'<div class="chips">'+cw+'</div>')+'<button class="btn amber" onclick="addCount(\''+bt.id+'\')">లెక్క నమోదు</button></div>';}
+    if(S.panel==="spray"){var sw=WNAMES().map(function(w){return '<button class="chip '+(S.spWorker===w?"on":"")+'" onclick="rF(\'spWorker\',\''+w+'\')">'+w+'</button>';}).join("");h+='<div class="card" style="margin-top:10px">'+field("ఏం కొట్టారు",'<input value="'+S.spText+'" oninput="tSP(this.value)" placeholder="ఫిప్రోనిల్ 2ml/L">')+field("ఎవరు",'<div class="chips">'+sw+'</div>')+'<button class="btn blue" onclick="addSpray(\''+bt.id+'\')">నమోదు చేయి</button></div>';}
+    if(S.panel==="dispatch"){var dw=[o.farmer,"యజమాని"].concat(WNAMES()).map(function(w){return '<button class="chip '+(S.dWho===w?"on":"")+'" onclick="rF(\'dWho\',\''+w+'\')">'+w+'</button>';}).join("");h+='<div class="card" style="margin-top:10px"><div style="font-size:12px;color:var(--sub);margin-bottom:8px">మిగిలినవి: '+num(rem)+'</div>'+field("ఎన్ని మొక్కలు",'<input value="'+S.dQty+'" oninput="tDQ(this.value.replace(/[^0-9]/g,\'\'))" inputmode="numeric" placeholder="5000">')+field("ఎవరు",'<div class="chips">'+dw+'</div>')+'<button class="btn peat" onclick="addDispatch(\''+bt.id+'\')">నమోదు చేయి</button></div>';}
+  }
+  h+='<div class="h3">డబ్బు లెక్క (ఆర్డర్ '+o.id+')</div>'+moneyBlock(o,isOwner);
+  return h;
+}
+function viewOrder(o,isOwner){
+  if(!o)return"";var h='<div style="font-size:18px;font-weight:700;color:var(--ink)">'+o.farmer+'</div><div style="font-size:13px;color:var(--sub);margin-bottom:14px">'+o.crop+' · '+o.variety+' · ఆర్డర్ '+o.id+' · '+num(o.qty)+' మొక్కలు</div>';
+  if(isOwner)h+='<div style="display:flex;gap:8px;margin-bottom:10px"><button class="chip" style="flex:1;text-align:center" onclick="editOrder(\''+o.id+'\')">✏️ మార్చు</button>'+(o.batchIds.length?'':'<button class="chip" style="flex:1;text-align:center;color:var(--red);border-color:var(--red)" onclick="deleteOrder(\''+o.id+'\')">🗑️ తీసేయి</button>')+'</div>';
+  h+='<div class="card">'+rl("విత్తినది",num(o.seededQty)+" / "+num(o.qty))+rl("డెలివరీ అయినది",num(orderDelivered(o)))+rl("స్థితి",o.closed?"మూసివేసింది":"నడుస్తోంది")+'</div>';
+  h+='<div class="h3">బ్యాచ్‌లు</div>';
+  if(!o.batchIds.length)h+='<div style="font-size:12px;color:var(--sub)">ఇంకా విత్తలేదు.</div>';
+  h+=o.batchIds.map(function(id){var b=batchById(id);return b?batchRow(b):"";}).join("");
+  h+='<div class="h3">డబ్బు లెక్క</div>'+moneyBlock(o,isOwner);
+  return h;
+}
+function taskRow(t,dstr,editable,isOwner){
+  var st=t.log[dstr];var edit=isOwner?' <span onclick="editTask(\''+t.id+'\')" style="color:var(--blue);cursor:pointer">✏️</span> <span onclick="deleteTask(\''+t.id+'\')" style="color:var(--red);cursor:pointer">🗑️</span>':'';var sub=(t.type==="seed"&&t.order)?("ఆర్డర్: "+(orderById(t.order)?orderById(t.order).farmer:t.order)):scopesLabel(t.scopes);var head='<div style="flex:1"><div style="font-size:14px;font-weight:600;color:var(--ink)">'+t.title+' <span class="tag" style="background:#EEF2F0;color:var(--sub)">'+repLabel(t)+'</span>'+edit+'</div><div style="font-size:12px;color:var(--sub)">'+sub+' · 👤 '+t.worker+'</div></div>';
+  var right="";
+  if(st&&st.status==="done")right='<span class="tag" style="background:#E8F3EC;color:var(--foliage)">✓ పూర్తయింది</span>';
+  else if(st&&st.status==="missed")right='<span class="tag" style="background:#FDECE7;color:var(--red)">✗ కాలేదు</span>';
+  else if(editable)right='<div style="display:flex;gap:6px"><button class="btn-sm" onclick="markDone(\''+t.id+'\',\''+dstr+'\')">పూర్తి</button><button class="btn-o" onclick="openMiss(\''+t.id+'\',\''+dstr+'\')">కాలేదు</button></div>';
+  else right='<span class="tag" style="background:#F3F0E8;color:var(--sub)">షెడ్యూల్</span>';
+  var row='<div class="card" style="display:flex;align-items:center;gap:12px;padding:14px"><div style="width:36px;height:36px;border-radius:999px;background:#EAF1F5;display:flex;align-items:center;justify-content:center">'+TICON[t.type]+'</div>'+head+right+'</div>';
+  if(st&&st.status==="missed"&&st.note)row+='<div class="note warn" style="margin-top:-6px;margin-bottom:10px">📝 '+st.note+'</div>';
+  if(S.miss&&S.miss.id===t.id&&S.miss.d===dstr)row+='<div class="card" style="margin-top:-6px">'+field("ఎందుకు కాలేదు (note)",'<input value="'+S.missNote+'" oninput="tMiss(this.value)" placeholder="ఉదా. వర్షం">')+'<button class="btn amber" onclick="saveMiss()">కాలేదు అని నమోదు</button></div>';
+  return row;
+}
+function viewTasks(isOwner){
+  var h="";
+  if(isOwner)h+='<div class="grid2"><button class="btn" onclick="openScreen(\'newTask\')">➕ కొత్త పని</button><button class="btn peat" onclick="openScreen(\'calendar\')">📅 క్యాలెండర్</button></div><button class="btn amber" style="margin-top:10px" onclick="openScreen(\'workers\')">👷 వర్కర్లు / హాజరు</button>';
+  else h+='<div class="banner">పనివాడి వ్యూ — ఈరోజు పనులే కనిపిస్తాయి.</div>';
+  var dstr=ymd(TODAY);var due=dueTasks(dstr);
+  h+='<div class="h3'+(isOwner?"":" first")+'">ఈరోజు చేయాల్సినవి <span style="font-weight:400;color:var(--sub);font-size:12px">('+fmt(TODAY)+')</span></div>';
+  h+=due.length?due.map(function(t){return taskRow(t,dstr,true,isOwner);}).join(""):'<div style="font-size:12px;color:var(--sub)">ఈరోజు పనులు లేవు.</div>';
+  h+='<div class="note" style="margin-top:12px">వారానికి/ప్రతి N రోజులకి పనులు — వాటి రోజే కనిపిస్తాయి. స్ప్రే/నీళ్లు పని "పూర్తి" చేస్తే ఆ బ్యాచ్(ల) ట్రాకింగ్‌లో ఆటోమేటిక్‌గా నమోదవుతుంది.</div>';
+  return h;
+}
+function viewNewTask(){
+  var t=S.nt;var open=openBatches();var isSeed=(t.type==="seed");
+  var typeChips=[["water","💧 నీళ్లు"],["spray","💨 స్ప్రే"],["seed","🌱 విత్తనం"],["other","🧹 ఇతర"]].map(function(x){return '<button class="chip '+(t.type===x[0]?"on":"")+'" onclick="rNT(\'type\',\''+x[0]+'\')">'+x[1]+'</button>';}).join("");
+  var scopeChips=open.map(function(b){var on=t.scopes.indexOf(b.id)>=0;return '<button class="chip '+(on?"on":"")+'" onclick="toggleScope(\''+b.id+'\')">'+(on?"✓ ":"")+b.crop.split(" ")[0]+" ("+b.id+")</button>";}).join("");
+  scopeChips+='<button class="chip '+(t.scopes.indexOf("nursery")>=0?"on":"")+'" onclick="pickNursery()">మొత్తం నర్సరీ</button>';
+  var toSeed=S.orders.filter(function(o){return !o.closed&&o.seededQty<o.qty;});
+  var orderChips=toSeed.length?toSeed.map(function(o){var left=o.qty-o.seededQty;return '<button class="chip '+(t.order===o.id?"on":"")+'" onclick="rNT(\'order\',\''+o.id+'\')">'+o.farmer+' · '+o.crop.split(" ")[0]+' ('+num(left)+')</button>';}).join(""):'<div style="font-size:12px;color:var(--sub)">విత్తాల్సిన ఆర్డర్లు లేవు.</div>';
+  var workerChips=WNAMES().map(function(w){return '<button class="chip '+(t.worker===w?"on":"")+'" onclick="rNT(\'worker\',\''+w+'\')">'+w+'</button>';}).join("");
+  var repChips=[["daily","రోజూ"],["everyN","ప్రతి N రోజులకి"],["weekly","వారానికి"],["once","ఒకసారి"]].map(function(x){return '<button class="chip '+(t.repeat===x[0]?"on":"")+'" onclick="rNT(\'repeat\',\''+x[0]+'\')">'+x[1]+'</button>';}).join("");
+  var startChips=[["today","ఈరోజు నుంచి"],["pick","తేదీ ఎంచు"],["sow","బ్యాచ్ విత్తిన రోజు నుంచి"]].map(function(x){return '<button class="chip '+(t.startMode===x[0]?"on":"")+'" onclick="rNT(\'startMode\',\''+x[0]+'\')">'+x[1]+'</button>';}).join("");
+  var h='<div style="font-size:18px;font-weight:700;color:var(--ink);margin-bottom:16px">'+(S.ntEdit?"పని మార్చు":"కొత్త పని అప్పగించు")+'</div>'
+    +field("ఏం పని",'<input value="'+t.title+'" oninput="tNT(\'title\',this.value)" placeholder="ఉదా. వేస్టేజ్ / విత్తనం వేయాలి">')
+    +field("రకం",'<div class="chips">'+typeChips+'</div>');
+  if(isSeed){
+    h+=field("ఏ ఆర్డర్ విత్తాలి",'<div class="chips">'+orderChips+'</div>')
+      +field("ఎవరికి",'<div class="chips">'+workerChips+'</div>')
+      +'<div class="note">విత్తనం పని ఒకసారి · ఈరోజు నుంచి. worker "పూర్తి" నొక్కితే — ఎన్ని విత్తారో అడిగి, విత్తిన తేదీ + విత్తిన వ్యక్తి నమోదై, బ్యాచ్ మొదలవుతుంది. (పాక్షికం కూడా చేయవచ్చు)</div>';
+  } else {
+    h+=field("ఏ బ్యాచ్(లు) / నర్సరీ (multi-select)",'<div class="chips">'+scopeChips+'</div>')
+      +field("ఎవరికి",'<div class="chips">'+workerChips+'</div>')
+      +field("ఎప్పుడెప్పుడు (repeat)",'<div class="chips">'+repChips+'</div>')
+      +(t.repeat==="everyN"?field("ఎన్ని రోజులకోసారి",'<input value="'+t.n+'" oninput="tNT(\'n\',this.value.replace(/[^0-9]/g,\'\'))" inputmode="numeric" placeholder="5">'):"")
+      +field("ఎప్పటి నుంచి (start)",'<div class="chips">'+startChips+'</div>')
+      +(t.startMode==="pick"?field("తేదీ ఎంచు",'<input type="date" value="'+t.startDate+'" onchange="rNT(\'startDate\',this.value)">'):"")
+      +'<div class="note">multi-select: ఒకే స్ప్రే రెండు బ్యాచ్‌లకి పెట్టవచ్చు. స్ప్రే/నీళ్లు పూర్తి చేస్తే బ్యాచ్ ట్రాకింగ్‌లో నమోదవుతుంది.</div>';
+  }
+  h+='<button class="btn" style="margin-top:14px" onclick="createTask()">'+(S.ntEdit?"మార్పులు సేవ్ చేయి":"పని అప్పగించు")+'</button>';
+  return h;
+}
+function viewCalendar(){
+  var ref=S.calRef;var head='<div class="calhead"><button class="calnav" onclick="calShift(-1)">‹</button><div style="font-size:15px;font-weight:700;color:var(--ink)">'+(S.calMode==="month"?TE_MONTHS[ref.getMonth()]+" "+ref.getFullYear():"వారం")+'</div><button class="calnav" onclick="calShift(1)">›</button></div>';
+  var toggle='<div style="display:flex;gap:8px;margin-bottom:12px"><button class="chip '+(S.calMode==="week"?"on":"")+'" style="flex:1;text-align:center" onclick="calSet(\'week\')">వారం</button><button class="chip '+(S.calMode==="month"?"on":"")+'" style="flex:1;text-align:center" onclick="calSet(\'month\')">నెల</button></div>';
+  var dows=DOW.map(function(d){return '<div class="caldow">'+d+'</div>';}).join("");var days=[];
+  if(S.calMode==="month"){var first=new Date(ref.getFullYear(),ref.getMonth(),1);var off=first.getDay();var dim=new Date(ref.getFullYear(),ref.getMonth()+1,0).getDate();for(var i=0;i<off;i++)days.push(null);for(var d=1;d<=dim;d++)days.push(new Date(ref.getFullYear(),ref.getMonth(),d));}
+  else{var ws=new Date(ref);ws.setDate(ws.getDate()-ws.getDay());for(var i=0;i<7;i++)days.push(addDays(ws,i));}
+  var cells=days.map(function(dt){if(!dt)return '<div class="calcell blank"></div>';var dstr=ymd(dt);var due=dueTasks(dstr);var isT=(dstr===ymd(TODAY));var dots="";due.slice(0,3).forEach(function(t){var st=t.log[dstr];var col=st&&st.status==="done"?"var(--seed)":(st&&st.status==="missed"?"var(--red)":"var(--amber)");dots+='<span class="caldot" style="background:'+col+'"></span>';});return '<div class="calcell'+(isT?" today":"")+'" onclick="openDay(\''+dstr+'\')"><div style="font-weight:'+(isT?"700":"400")+'">'+dt.getDate()+'</div><div class="caldots">'+dots+'</div></div>';}).join("");
+  return head+toggle+'<div class="calgrid '+(S.calMode==="week"?"calweek":"")+'">'+dows+cells+'</div><div class="note" style="margin-top:14px">🟡 షెడ్యూల్ · 🟢 పూర్తి · 🔴 కాలేదు · రోజు నొక్కి పనులు+హాజరు చూడండి</div>';
+}
+function viewDay(dstr){
+  var dt=fromYmd(dstr);var due=dueTasks(dstr);var editable=(dstr<=ymd(TODAY));
+  var h='<div style="font-size:18px;font-weight:700;color:var(--ink)">'+dt.getDate()+" "+TE_MONTHS[dt.getMonth()]+'</div><div style="font-size:12px;color:var(--sub);margin-bottom:16px">'+DOW[dt.getDay()]+'వారం'+(dstr===ymd(TODAY)?" · ఈరోజు":(editable?"":" · భవిష్యత్తు"))+'</div>';
+  h+='<div class="h3 first">ఆ రోజు పనులు</div>'+(due.length?due.map(function(t){return taskRow(t,dstr,editable,S.role==="owner");}).join(""):'<div style="font-size:12px;color:var(--sub)">పనులు లేవు.</div>');
+  h+='<div class="h3">ఆ రోజు హాజరు</div>'+S.workers.map(function(w){var st=w.att[dstr];return '<div class="card" style="display:flex;align-items:center;gap:10px;padding:12px"><div style="flex:1"><div style="font-size:14px;font-weight:600;color:var(--ink)">'+w.name+'</div><div style="font-size:11px;color:var(--sub)">'+(w.type==="daily"?"రోజు కూలీ":"నెల జీతం")+'</div></div>'+(editable?'<button class="chip '+(st==="P"?"att-P":"")+'" style="margin:0 4px 0 0" onclick="setAtt(\''+w.name+'\',\''+dstr+'\',\'P\')">హాజరు</button><button class="chip '+(st==="A"?"att-A":"")+'" style="margin:0" onclick="setAtt(\''+w.name+'\',\''+dstr+'\',\'A\')">గైర్హాజరు</button>':'<span class="tag" style="background:'+(st==="P"?"#E8F3EC":st==="A"?"#FDECE7":"#F3F0E8")+';color:'+(st==="P"?"var(--foliage)":st==="A"?"var(--red)":"var(--sub)")+'">'+(st==="P"?"హాజరు":st==="A"?"గైర్హాజరు":"—")+'</span>')+'</div>';}).join("");
+  return h;
+}
+function viewWorkers(){var h='<button class="btn" onclick="openScreen(\'addWorker\')">➕ కొత్త వర్కర్ చేర్చు</button><div class="h3">వర్కర్లు</div>';h+=S.workers.map(function(w){return '<button class="listbtn" onclick="openWorker(\''+w.name+'\')"><div><div class="t">'+w.name+'</div><div class="st">'+(w.type==="daily"?"రోజు ₹"+num(w.rate):"నెల ₹"+num(w.rate))+' · 📞 '+w.phone+'</div></div><div class="rt"><span class="tag" style="background:#E8F3EC;color:var(--foliage)">'+presentCount(w)+' రోజులు</span><div class="st">వివరాలు ›</div></div></button>';}).join("");return h;}
+function viewAddWorker(){var w=S.nw;var typeChips=[["daily","రోజు కూలీ"],["monthly","నెల జీతం"]].map(function(x){return '<button class="chip '+(w.type===x[0]?"on":"")+'" style="flex:1" onclick="rNW(\'type\',\''+x[0]+'\')">'+x[1]+'</button>';}).join("");var joinChips=["ఈరోజు","నెల క్రితం","3 నెలల క్రితం"].map(function(x,i){return '<button class="chip '+(w.joinIdx===i?"on":"")+'" onclick="rNW(\'joinIdx\','+i+')">'+x+'</button>';}).join("");return '<div style="font-size:18px;font-weight:700;color:var(--ink);margin-bottom:16px">'+(S.nwEdit?"వర్కర్ మార్చు":"కొత్త వర్కర్")+'</div>'+(S.nwEdit?field("పేరు",'<input value="'+w.name+'" disabled style="background:#F3F0E8">'):field("పేరు",'<input value="'+w.name+'" oninput="tNW(\'name\',this.value)" placeholder="మహేష్">'))+field("ఫోన్",'<input value="'+w.phone+'" oninput="tNW(\'phone\',this.value)" placeholder="90xxxxxxxx">')+field("పే రకం",'<div class="chips" style="display:flex">'+typeChips+'</div>')+field(w.type==="daily"?"రోజు రేటు (₹)":"నెల జీతం (₹)",'<input value="'+w.rate+'" oninput="tNW(\'rate\',this.value.replace(/[^0-9]/g,\'\'))" inputmode="numeric" placeholder="'+(w.type==="daily"?"400":"12000")+'">')+(S.nwEdit?"":field("ఎప్పుడు చేరాడు",'<div class="chips">'+joinChips+'</div>'))+'<button class="btn" style="margin-top:14px" onclick="saveWorker()">'+(S.nwEdit?"మార్పులు సేవ్ చేయి":"వర్కర్ చేర్చు")+'</button>';}
+function viewWorkerProfile(w){
+  var h='<div style="font-size:20px;font-weight:700;color:var(--ink)">'+w.name+'</div><div style="font-size:13px;color:var(--sub);margin-bottom:14px">📞 '+w.phone+' · చేరిన తేదీ '+fmt(w.joinDate)+'</div>';
+  h+='<div style="display:flex;gap:8px;margin-bottom:6px"><button class="chip" style="flex:1;text-align:center" onclick="editWorker(\''+w.name+'\')">✏️ వివరాలు మార్చు</button><button class="chip" style="flex:1;text-align:center;color:var(--red);border-color:var(--red)" onclick="deleteWorker(\''+w.name+'\')">🗑️ తీసేయి</button></div>';
+  h+='<div class="card">'+rl("పే రకం",w.type==="daily"?"రోజు కూలీ ₹"+num(w.rate):"నెల జీతం ₹"+num(w.rate))+rl("హాజరు",presentCount(w)+" రోజులు")+rl("సంపాదన","₹"+num(earned(w)))+rl("అడ్వాన్స్","−₹"+num(advTotal(w)),"red")+'<div style="border-top:1px solid var(--line);margin:6px 0"></div>'+rl("ఇవ్వాల్సినది","₹"+num(netPay(w)),"bold")+'</div>';
+  h+='<div class="h3">రోజువారీ చరిత్ర</div>';var rows="";
+  for(var d=0;d<14;d++){var dt=addDays(TODAY,-d);var dstr=ymd(dt);var att=w.att[dstr];var myTasks=S.tasks.filter(function(t){return t.worker===w.name&&isDue(t,dt);});var taskLines="";myTasks.forEach(function(t){var st=t.log[dstr];if(st&&st.status==="done")taskLines+='<div style="font-size:12px;color:var(--foliage)">✓ '+t.title+' — '+scopesLabel(t.scopes)+'</div>';else if(st&&st.status==="missed")taskLines+='<div style="font-size:12px;color:var(--red)">✗ '+t.title+' ('+st.note+')</div>';else if(d===0)taskLines+='<div style="font-size:12px;color:var(--sub)">• '+t.title+' — పెండింగ్</div>';});if(att===undefined&&myTasks.length===0)continue;var attTag=att==="P"?'<span class="tag" style="background:#E8F3EC;color:var(--foliage)">హాజరు</span>':att==="A"?'<span class="tag" style="background:#FDECE7;color:var(--red)">గైర్హాజరు</span>':'<span class="tag" style="background:#F3F0E8;color:var(--sub)">—</span>';rows+='<div class="card" style="padding:12px"><div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:13px;font-weight:600;color:var(--ink)">'+fmt(dt)+(d===0?" (ఈరోజు)":"")+'</div>'+attTag+'</div>'+(taskLines?'<div style="margin-top:6px">'+taskLines+'</div>':'<div style="font-size:12px;color:var(--sub);margin-top:4px">పనులు లేవు</div>')+'</div>';}
+  h+=rows;
+  var acts=[];S.batches.forEach(function(b){b.timeline.forEach(function(e){if(e.by===w.name)acts.push({d:e.date,text:e.text,crop:b.crop.split(" ")[0]});});});
+  if(acts.length){h+='<div class="h3">బ్యాచ్ కార్యకలాపాలు</div>'+acts.map(function(a){return '<div class="exp"><span style="color:var(--ink)">'+a.text+'<span style="color:var(--sub);font-size:11px"> · '+a.crop+'</span></span><span style="color:var(--sub);font-size:11px">'+a.d+'</span></div>';}).join("");}
+  return h;
+}
+function viewSettings(){return '<div style="font-size:18px;font-weight:700;color:var(--ink);margin-bottom:6px">సెట్టింగ్‌లు</div><div style="font-size:12px;color:var(--sub);margin-bottom:16px">నర్సరీ మొత్తం ట్రే సామర్థ్యం</div>'+field("మొత్తం ట్రేలు",'<input value="'+S.st.trays+'" oninput="tST(this.value.replace(/[^0-9]/g,\'\'))" inputmode="numeric" placeholder="2000">')+'<div class="card" style="margin-top:10px">'+rl("ప్రస్తుతం రిజర్వ్",num(reservedTrays())+" ట్రేలు",null,true)+rl("ప్రస్తుతం వాడుకలో",num(occupiedTrays())+" ట్రేలు",null,true)+'</div><button class="btn" style="margin-top:14px" onclick="saveSettings()">సేవ్ చేయి</button>';}
+function viewAddExpense(){var e=S.ef;var chips=EXP_CATS.map(function(c,i){return '<button class="chip '+(i===e.catIdx?"on":"")+'" onclick="efCat('+i+')">'+c+'</button>';}).join("");return '<div style="font-size:18px;font-weight:700;color:var(--ink);margin-bottom:16px">ఖర్చు చేర్చు</div>'+field("వర్గం",'<div class="chips">'+chips+'</div>')+field("మొత్తం (₹)",'<input value="'+e.amt+'" oninput="tEF(\'amt\',this.value.replace(/[^0-9]/g,\'\'))" inputmode="numeric" placeholder="5000">')+field("నోట్",'<input value="'+e.note+'" oninput="tEF(\'note\',this.value)" placeholder="ఐచ్ఛికం">')+'<div class="note">తేదీ: '+fmt(TODAY)+'</div><button class="btn" style="margin-top:14px" onclick="saveExpense()">ఖర్చు నమోదు</button>';}
+function viewLabour(){var h='<div style="font-size:18px;font-weight:700;color:var(--ink);margin-bottom:4px">కూలీ / జీతాలు</div><div style="font-size:12px;color:var(--sub);margin-bottom:12px">హాజరు క్యాలెండర్ నుంచి వస్తుంది</div><button class="btn peat" onclick="openScreen(\'workers\')">👷 వర్కర్లు / హాజరు క్యాలెండర్</button>';h+=S.workers.map(function(w){var adv=S.advOpen===w.name;var advPanel=adv?'<div class="card" style="margin-top:8px;box-shadow:none;border:1px solid var(--line)">'+field("అడ్వాన్స్ (₹)",'<input value="'+S.advAmt+'" oninput="tADV(this.value.replace(/[^0-9]/g,\'\'))" inputmode="numeric" placeholder="2000">')+'<button class="btn peat" onclick="giveAdv(\''+w.name+'\')">అడ్వాన్స్ ఇచ్చు</button></div>':'';return '<div class="card" style="margin-top:10px"><div style="display:flex;justify-content:space-between;align-items:flex-start"><div><div style="font-size:15px;font-weight:700;color:var(--ink)">'+w.name+'</div><div style="font-size:12px;color:var(--sub)">'+(w.type==="daily"?"రోజు ₹"+num(w.rate):"నెల ₹"+num(w.rate))+'</div></div><span class="pill" style="background:'+(w.type==="daily"?"#FBEFD9":"#E8F3EC")+';color:'+(w.type==="daily"?"var(--amber)":"var(--foliage)")+'">'+(w.type==="daily"?"రోజు":"నెల")+'</span></div><div style="margin-top:10px">'+rl("హాజరు",presentCount(w)+" రోజులు")+rl(w.type==="daily"?"సంపాదన":"ఈ నెల జీతం","₹"+num(earned(w)))+rl("అడ్వాన్స్","−₹"+num(advTotal(w)),"red")+'<div style="border-top:1px solid var(--line);margin:6px 0"></div>'+rl("ఇవ్వాల్సినది","₹"+num(netPay(w)),"bold")+'</div><div style="display:flex;gap:8px;margin-top:10px"><button class="chip" style="flex:1;text-align:center;'+(adv?"background:var(--peat);color:#fff":"")+'" onclick="openAdv(\''+w.name+'\')">₹ అడ్వాన్స్</button><button class="chip" style="flex:1;text-align:center;background:var(--foliage);color:#fff" onclick="paySalary(\''+w.name+'\')">జీతం</button></div>'+advPanel+'</div>';}).join("");return h;}
+function viewMoney(){
+  var coll=0,dues=[];S.orders.forEach(function(o){coll+=paidTotal(o);var bl=obalance(o);if(bl>0)dues.push({o:o,bal:bl});});
+  var out=0;S.expenses.forEach(function(e){out+=e.amt;});var income=coll+42000;var duesTotal=0;dues.forEach(function(d){duesTotal+=d.bal;});
+  var h='<div class="profit"><div class="l">ఈ నెల లాభం</div><div class="n">₹'+num(income-out)+'</div><div class="r"><span>📈 ₹'+Math.round(income/1000)+'k</span><span>📉 ₹'+Math.round(out/1000)+'k</span></div></div>';
+  h+='<div class="grid2" style="margin-top:12px"><button class="btn" onclick="openScreen(\'addExpense\')">➕ ఖర్చు చేర్చు</button><button class="btn peat" onclick="openScreen(\'labour\')">👷 కూలీ/జీతాలు</button></div>';
+  h+='<div class="card" style="margin-top:12px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;font-weight:600;color:var(--ink)">ఈరోజు మొత్తం ఖర్చు</span><span style="font-size:18px;font-weight:700;color:var(--red)">₹'+num(S.todayOut)+'</span></div>';
+  h+='<div class="h3">రైతు బాకీలు (అన్ని ఆర్డర్లు)</div><div class="owe"><span class="k">మొత్తం వసూలు</span><span class="v">₹'+num(duesTotal)+'</span></div>';
+  h+=dues.length?dues.map(function(d){return '<button class="listbtn" onclick="openOrder(\''+d.o.id+'\')"><div><div class="t" style="font-size:14px">'+d.o.farmer+' <span class="tag" style="background:'+(d.o.closed?"#EDEBE4":"#E8F3EC")+';color:'+(d.o.closed?"var(--sub)":"var(--foliage)")+'">'+(d.o.closed?"మూసిన":"open")+'</span></div><div class="st">'+d.o.crop+' · '+d.o.id+'</div></div><div style="font-weight:700;color:var(--red)">₹'+num(d.bal)+'</div></button>';}).join(""):'<div style="font-size:12px;color:var(--sub)">బాకీలు లేవు 🎉</div>';
+  h+='<div class="h3">ఖర్చులు (అన్నీ)</div>'+S.expenses.map(function(e,idx){
+    if(S.expEdit===idx)return '<div class="card" style="box-shadow:none;border:1px solid var(--line)">'+field(e.cat+" మార్చు (₹)",'<input value="'+S.expEditAmt+'" oninput="tExpEdit(this.value.replace(/[^0-9]/g,\'\'))" inputmode="numeric">')+'<button class="btn" onclick="saveExpEdit()">సేవ్</button></div>';
+    return '<div class="exp"><span style="color:var(--ink)">'+e.cat+'<span style="color:var(--sub);font-size:11px"> · '+e.date+'</span></span><span style="color:var(--sub)">₹'+num(e.amt)+' <span onclick="openExpEdit('+idx+')" style="color:var(--blue);cursor:pointer">✏️</span></span></div>';
+  }).join("");
+  return h;
+}
+render();
+</script>
+</body>
+</html>

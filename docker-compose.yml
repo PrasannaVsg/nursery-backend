@@ -1,0 +1,34 @@
+services:
+  db:
+    image: postgres:16
+    container_name: nursery-db
+    environment:
+      POSTGRES_DB: nursery
+      POSTGRES_USER: nursery
+      POSTGRES_PASSWORD: nursery
+    ports:
+      - "5432:5432"
+    volumes:
+      - nursery-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nursery -d nursery"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    container_name: nursery-app
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      # Inside the compose network the DB is reached by service name, not localhost.
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/nursery
+      SPRING_DATASOURCE_USERNAME: nursery
+      SPRING_DATASOURCE_PASSWORD: nursery
+    ports:
+      - "8080:8080"
+
+volumes:
+  nursery-pgdata:
